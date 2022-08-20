@@ -11,6 +11,7 @@ class DuyuruEklePage extends StatefulWidget {
 
   @override
   State<DuyuruEklePage> createState() => _DuyuruEklePageState();
+  
 }
 
 class _DuyuruEklePageState extends State<DuyuruEklePage> {
