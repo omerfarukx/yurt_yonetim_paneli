@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_6/Kay%C4%B1tEkleme/kayitekleme.dart';
+import 'package:flutter_application_6/ar%C4%B1za%20i%C5%9Flemleri/ariza.dart';
 import 'package:flutter_application_6/duyuruislemleri/duyurugiris.dart';
 import 'package:flutter_application_6/yemekhane/yemekhanegiris.dart';
 
@@ -130,6 +131,26 @@ class _HomePageState extends State<HomePage> {
                 child: TextButton(
                   child: Text(
                     "Öğrenci Listeleme",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ),
+              ),SizedBox(
+                height: 10,
+              ),
+               Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                width: size.width * 0.65,
+                height: size.height * 0.08,
+                child: TextButton(onPressed: () => Navigator.pushReplacement(
+                          //Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ArizaTakipPage())),
+                  child: Text(
+                    "Arıza Takip",
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ),

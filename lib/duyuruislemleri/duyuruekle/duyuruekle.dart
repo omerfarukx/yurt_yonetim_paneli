@@ -12,21 +12,16 @@ class DuyuruEklePage extends StatefulWidget {
   @override
   State<DuyuruEklePage> createState() => _DuyuruEklePageState();
 
-
-
-
-
-  
-
 }
 
 class _DuyuruEklePageState extends State<DuyuruEklePage> {
   final _firestore = FirebaseFirestore.instance;
   TextEditingController nameController = TextEditingController();
   TextEditingController duyuruController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
-     CollectionReference moviesRef = _firestore.collection('movies');
+     CollectionReference duyuruRef = _firestore.collection('Duyurular');
     Size size = MediaQuery.of(context).size;
     int _currentIndex = 0;
     return Scaffold(
@@ -88,6 +83,7 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Duyuru Metni',
+                  
                 ),
               ),
             ),
@@ -108,14 +104,15 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
                 print(duyuruController.text);
 
 
-                Map<String, dynamic> movieData = {
+                Map<String, String> movieData = {
             'name': nameController.text,
-            'duyuru': duyuruController.text
-            
-              
+            'duyuru': duyuruController.text,
+
               };
-              await moviesRef.doc(nameController.text).set({'kayıt': '$duyuruController'});
+              String metin=duyuruController.text;
+              await duyuruRef.doc(nameController.text).set({'Metin' : '$metin'});
               },
+              
               
                   child: Text(
                     "Yayınla",

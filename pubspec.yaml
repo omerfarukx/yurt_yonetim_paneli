@@ -43,6 +43,11 @@ dependencies:
   fluttertoast: ^8.0.8
   firebase_core: ^1.21.0
   cloud_firestore: ^3.4.5
+  provider: ^6.0.3
+  image_picker: ^0.8.5+3
+  random_string: ^2.3.1
+  firebase_storage: ^10.3.6
+  image_picker_android: 0.8.4+13
  
 
 dev_dependencies:

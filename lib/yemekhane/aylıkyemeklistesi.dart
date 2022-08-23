@@ -67,22 +67,17 @@ class _AylikYemekListesiState extends State<AylikYemekListesi> {
           width: size.width * 1,
           height: size.height * 1,
           child: Column(children: [
-            Container(
-              margin: EdgeInsets.only(top: 25),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Colors.white),
-               width: size.width * 0.65,
-                height: size.height * 0.08,
-                child: TextButton(onPressed: () => Navigator.pushReplacement(
-                          //Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomePage()),),
-                  child: Text(//tablo seklinde yemek listesini cekeceğim.
-                    "",
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                  ),
-                ),
-            )
+           
+               Expanded(
+                 child: Container(
+                  
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Colors.white),
+                   width: size.width * 1,
+                    height: size.height * 1,
+                   
+                             ),
+               ),
+            
           ]),
       ));
   }
