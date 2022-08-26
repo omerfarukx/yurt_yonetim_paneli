@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StatusService{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  
 
 
 
@@ -20,7 +21,12 @@ class StatusServiceAriza{
     var ref = _firestore.collection("Ariza").snapshots();
     return ref;
   }
-  
+  Future<void> removeStatus(String docId) {
+    var ref = _firestore.collection("Ariza").doc(docId).delete();
+
+    return ref;
+  }
+
 }class StatusServiceYemek{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -28,6 +34,25 @@ class StatusServiceAriza{
 
   Stream<QuerySnapshot>getStatus(){
     var ref = _firestore.collection("Yemek").snapshots();
+    return ref;
+  }
+}
+class StatusServiceIzin{
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+
+  Stream<QuerySnapshot>getStatus(){
+    var ref = _firestore.collection("Izinler").snapshots();
+    return ref;
+  }
+}class StatusServiceBasvuru{
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+
+  Stream<QuerySnapshot>getStatus(){
+    var ref = _firestore.collection("AlinanBasvurular").snapshots();
     return ref;
   }
 }

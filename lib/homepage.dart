@@ -4,7 +4,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_6/Kay%C4%B1tEkleme/kayitekleme.dart';
 import 'package:flutter_application_6/ar%C4%B1za%20i%C5%9Flemleri/ariza.dart';
 import 'package:flutter_application_6/duyuruislemleri/duyurugiris.dart';
+import 'package:flutter_application_6/izin_i%C5%9Flemleri.dart';
 import 'package:flutter_application_6/yemekhane/yemekhanegiris.dart';
+
+import 'ogrenci/ogrencilisteme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -50,11 +53,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 width: size.width * 0.65,
                 height: size.height * 0.08,
-                child: TextButton(onPressed: () => Navigator.pushReplacement(
-                          //Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => KayitEklemePage()),),
+                child: TextButton(
+                  onPressed: () => Navigator.pushReplacement(
+                    //Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => KayitEklemePage()),
+                  ),
                   child: Text(
                     "Kayıt Ekleme",
                     style: TextStyle(fontSize: 20, color: Colors.black),
@@ -71,11 +75,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 width: size.width * 0.65,
                 height: size.height * 0.08,
-                child: TextButton(onPressed: () => Navigator.pushReplacement(
-                          //Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DuyuruIslemleriPage())),
+                child: TextButton(
+                  onPressed: () => Navigator.pushReplacement(
+                      //Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DuyuruIslemleriPage())),
                   child: Text(
                     "Duyuru İşlemleri",
                     style: TextStyle(fontSize: 20, color: Colors.black),
@@ -92,20 +97,22 @@ class _HomePageState extends State<HomePage> {
                 ),
                 width: size.width * 0.65,
                 height: size.height * 0.08,
-                child: TextButton(onPressed: () => Navigator.pushReplacement(
-                          //Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => YemekhaneGirisPage())),
+                child: TextButton(
+                  onPressed: () => Navigator.pushReplacement(
+                      //Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => YemekhaneGirisPage())),
                   child: Text(
                     "Yemekhane İşlemleri",
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ),
-              ),SizedBox(
+              ),
+              SizedBox(
                 height: 10,
               ),
-               Container(
+              Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
@@ -118,26 +125,11 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ),
-              ),SizedBox(
+              ),
+              SizedBox(
                 height: 10,
               ),
-               Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                ),
-                width: size.width * 0.65,
-                height: size.height * 0.08,
-                child: TextButton(
-                  child: Text(
-                    "Öğrenci Listeleme",
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                  ),
-                ),
-              ),SizedBox(
-                height: 10,
-              ),
-               Container(
+              Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
@@ -145,12 +137,55 @@ class _HomePageState extends State<HomePage> {
                 width: size.width * 0.65,
                 height: size.height * 0.08,
                 child: TextButton(onPressed: () => Navigator.pushReplacement(
-                          //Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ArizaTakipPage())),
+                      //Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OgrenciListelemePage())),
+                  child: Text(
+                    "Öğrenci Listeleme",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                width: size.width * 0.65,
+                height: size.height * 0.08,
+                child: TextButton(
+                  onPressed: () => Navigator.pushReplacement(
+                      //Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ArizaTakipPage())),
                   child: Text(
                     "Arıza Takip",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ),
+              ),SizedBox(
+                height: 10,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                width: size.width * 0.65,
+                height: size.height * 0.08,
+                child: TextButton(
+                  onPressed: () => Navigator.pushReplacement(
+                      //Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => IzinIslemleriPage())),
+                  child: Text(
+                    "İzin İşlemleri",
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ),

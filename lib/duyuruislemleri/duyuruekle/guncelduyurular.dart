@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_6/duyuruislemleri/duyurugiris.dart';
 import 'package:flutter_application_6/homepage.dart';
 import 'package:flutter_application_6/status_servise.dart';
 
@@ -27,7 +28,7 @@ class _GuncelDuyurularPageState extends State<GuncelDuyurularPage> {
             onPressed: () => Navigator.pushReplacement(
               //Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => DuyuruIslemleriPage()),
             ),
             icon: new Icon(Icons.arrow_back, color: Colors.white),
           ),

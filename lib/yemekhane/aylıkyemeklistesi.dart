@@ -13,9 +13,11 @@ class AylikYemekListesi extends StatefulWidget {
 
 class _AylikYemekListesiState extends State<AylikYemekListesi> {
   @override
-  Widget build(BuildContext context) {Size size = MediaQuery.of(context).size;
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xFF808080),
+        appBar: AppBar(
+          backgroundColor: Color(0xFF808080),
           title: Text("Şehit Furkan Doğan Yurdu"),
           automaticallyImplyLeading: false,
           leading: new IconButton(
@@ -26,37 +28,30 @@ class _AylikYemekListesiState extends State<AylikYemekListesi> {
             ),
             icon: new Icon(Icons.arrow_back, color: Colors.white),
           ),
-        actions: [
-           PopupMenuButton(
-                  
-                   itemBuilder: (context){
-                     return [
-                            PopupMenuItem<int>(
-                                value: 0,
-                                child: Text("Güncelle"),
-                            ),
-
-                            PopupMenuItem<int>(
-                                value: 1,
-                                child: Text("Yemek Listesi Ekle"),
-                            ),
-
-                        ];
-                   },
-                   onSelected:(value){
-                      if(value == 0){
-                         print("My account menu is selected.");
-                      }else if(value == 1){
-                         print("Settings menu is selected.");
-                      }else if(value == 2){
-                         print("Logout menu is selected.");
-                      }
-                   }
-                  ),
-        ],
-      
-      ),
-      body: Container(
+          actions: [
+            PopupMenuButton(itemBuilder: (context) {
+              return [
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Text("Güncelle"),
+                ),
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Text("Yemek Listesi Ekle"),
+                ),
+              ];
+            }, onSelected: (value) {
+              if (value == 0) {
+                print("My account menu is selected.");
+              } else if (value == 1) {
+                print("Settings menu is selected.");
+              } else if (value == 2) {
+                print("Logout menu is selected.");
+              }
+            }),
+          ],
+        ),
+        body: Container(
           padding: EdgeInsets.only(top: size.width * 0.02),
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -67,18 +62,16 @@ class _AylikYemekListesiState extends State<AylikYemekListesi> {
           width: size.width * 1,
           height: size.height * 1,
           child: Column(children: [
-           
-               Expanded(
-                 child: Container(
-                  
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Colors.white),
-                   width: size.width * 1,
-                    height: size.height * 1,
-                   
-                             ),
-               ),
-            
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white),
+                width: size.width * 1,
+                height: size.height * 1,
+              ),
+            ),
           ]),
-      ));
+        ));
   }
 }
