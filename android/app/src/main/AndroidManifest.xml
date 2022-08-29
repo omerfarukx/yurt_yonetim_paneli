@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_application_6">
    <application
-        android:label="flutter_application_6"
+        android:label="Yurt Yönetim Paneli"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

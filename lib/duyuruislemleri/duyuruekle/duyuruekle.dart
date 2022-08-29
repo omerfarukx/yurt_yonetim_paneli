@@ -114,7 +114,7 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
                     offset: Offset(0, 4),
                   )
                 ]),
-              width: size.width * 0.25,
+              width: size.width * 0.30,
             height: size.height * 0.08,
               child:  TextButton(onPressed:() async{
 

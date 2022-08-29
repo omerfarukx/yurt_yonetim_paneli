@@ -159,6 +159,7 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                   ),
                      
                   DropdownButtonFormField(
+                    
                       value: dropdownValue,
                       elevation: 10,
                       onChanged: (String newValue) {
