@@ -2,15 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../duyuruislemleri/duyurugiris.dart';
 import '../homepage.dart';
 
 class KayitEklemePage extends StatefulWidget {
   const KayitEklemePage({Key key}) : super(key: key);
-
+ 
   @override
   State<KayitEklemePage> createState() => _KayitEklemePageState();
 }
@@ -19,6 +21,8 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
   final _firestore = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
+
+  
 
   Future<User> handleSignUp(email, password) async {
     UserCredential result = await auth.createUserWithEmailAndPassword(
@@ -37,12 +41,13 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
   TextEditingController bolumController = TextEditingController();
   TextEditingController sinifController = TextEditingController();
   TextEditingController odaController = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     CollectionReference usersRef = _firestore.collection('users');
-    bool isValidate = false;
-
+    bool isValidate = true;
+   String dropdownValue = 'Adana';
+   String dropdownValue1 = 'Hazırlık';
     Size size = MediaQuery.of(context).size;
     int _currentIndex = 0;
     return Scaffold(
@@ -76,6 +81,7 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                   SingleChildScrollView(
                     child: Center(
                       child: TextFormField(
+                        inputFormatters: [LengthLimitingTextInputFormatter(11)],
                         controller: tcController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
@@ -86,11 +92,10 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           border: new OutlineInputBorder(),
                         ),
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value.length < 11) {
                             isValidate = false;
                             return "T.C Giriniz";
                           } else {
-                            isValidate = true;
                             return null;
                           }
                         },
@@ -114,7 +119,6 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "İsim Soyisim Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
@@ -123,7 +127,7 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                   ),
                   TextFormField(
                       controller: telController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         hintText: "Telefon",
                         filled: true,
@@ -136,16 +140,31 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "Telefon Numarası Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
                   SizedBox(
                     height: 15,
                   ),
-                  TextFormField(
-                      controller: sehirController,
+                     
+                  DropdownButtonFormField(
+                      value: dropdownValue,
+                      elevation: 10,
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkâri", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kilis", "Kırıkkale", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Şanlıurfa", "Siirt", "Sinop", "Sivas", "Şırnak", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"]
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      
                       decoration: InputDecoration(
+                        
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "Şehir",
@@ -157,7 +176,6 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "Şehir Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
@@ -174,11 +192,14 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
+                        String pattern = r'\w+@\w+\.\w+';
                         if (value.isEmpty) {
                           isValidate = false;
-                          return "Email Girniz";
+                          return 'Email Giriniz.';
+                        } else if (!RegExp(pattern).hasMatch(value)) {
+                          isValidate = false;
+                          return 'Lütfen geçerli bir eposta adresi giriniz.';
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
@@ -199,7 +220,6 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "Üniversite Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
@@ -220,21 +240,34 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "Bölüm Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
                   SizedBox(
                     height: 15,
                   ),
-                  TextFormField(
-                      controller: sinifController,
-                      keyboardType: TextInputType.number,
+                  DropdownButtonFormField(
+                      value: dropdownValue1,
+                      elevation: 10,
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue1 = newValue;
+                        });
+                      },
+                      items: <String>['Hazırlık','1','2','3','4','5','6']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      
                       decoration: InputDecoration(
+                        
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "Sınıf",
-                        labelText: "SınıfGiriniz",
+                        labelText: "Sınıf Giriniz",
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
@@ -242,7 +275,6 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "Sınıf Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
@@ -255,7 +287,7 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        hintText: "Oda Bİlgileri",
+                        hintText: "Oda Bilgileri",
                         labelText: "Oda Bilgilerini Giriniz",
                         border: OutlineInputBorder(),
                       ),
@@ -264,7 +296,6 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                           isValidate = false;
                           return "Oda Girniz";
                         } else {
-                          isValidate = true;
                           return null;
                         }
                       }),
@@ -277,10 +308,8 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        
-                        print("Kullanıcı Kaydı yapılıyor ");
-                      }
+                      if (_formKey.currentState.validate()) {}
+
                       try {
                         UserCredential userCredential = await FirebaseAuth
                             .instance
@@ -313,12 +342,13 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                         String tc = tcController.text;
                         String ad = adController.text;
                         String tel = telController.text;
-                        String sehir = sehirController.text;
+                        String sehir = dropdownValue;
                         String email = emailController.text;
                         String uni = universiteController.text;
                         String bolum = bolumController.text;
-                        String sinif = sinifController.text;
+                        String sinif = dropdownValue1;
                         String oda = odaController.text;
+
                         await usersRef
                             .doc(FirebaseAuth.instance.currentUser.uid)
                             .set(
@@ -334,11 +364,28 @@ class _KayitEklemePageState extends State<KayitEklemePage> {
                             'Oda': '$oda',
                           },
                         );
+                        Fluttertoast.showToast(
+                            msg: "Kayıt Başarıyla Eklendi",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 5,
+                            backgroundColor: Colors.amber,
+                            textColor: Colors.white,
+                            fontSize: 15);
+                        Navigator.pushReplacement(
+                            //Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => KayitEklemePage()));
                       }
+
+                      isValidate = true;
                     },
                   )
                 ]),
               ),
             ])));
+
+            
   }
 }

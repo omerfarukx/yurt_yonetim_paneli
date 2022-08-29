@@ -2,24 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_application_6/ar%C4%B1za%20i%C5%9Flemleri/YapilanAriza.dart';
-import 'package:flutter_application_6/homepage.dart';
+import 'package:flutter_application_6/ar%C4%B1za%20i%C5%9Flemleri/ariza.dart';
 import 'package:flutter_application_6/status_servise.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-class ArizaTakipPage extends StatefulWidget {
-  const ArizaTakipPage({Key key}) : super(key: key);
+class YapilanArizaPage extends StatefulWidget {
+  const YapilanArizaPage({Key key}) : super(key: key);
 
   @override
-  State<ArizaTakipPage> createState() => _ArizaTakipPageState();
+  State<YapilanArizaPage> createState() => _YapilanArizaPageState();
 }
 
-class _ArizaTakipPageState extends State<ArizaTakipPage> {
-  StatusServiceAriza _statusServiceAriza = StatusServiceAriza();
+class _YapilanArizaPageState extends State<YapilanArizaPage> {
   @override
   Widget build(BuildContext context) {
+    StatusServiceAriza _statusServiceAriza = StatusServiceAriza();
     Size size = MediaQuery.of(context).size;
-    int _currentIndex = 0;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF808080),
@@ -29,27 +26,10 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
             onPressed: () => Navigator.pushReplacement(
               //Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => ArizaTakipPage()),
             ),
             icon: new Icon(Icons.arrow_back, color: Colors.white),
           ),
-          actions: [
-            PopupMenuButton(
-              itemBuilder: (context) {
-                return [
-                  PopupMenuItem<int>(
-                      value: 0,
-                      child: TextButton(
-                          child: (Text("Yapıldı")),
-                          onPressed: () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => YapilanArizaPage()),
-                              ))),
-                ];
-              },
-            ),
-          ],
         ),
         body: Container(
           padding: EdgeInsets.only(top: size.width * 0.02),
@@ -71,7 +51,7 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                       itemBuilder: (context, index) {
                         DocumentSnapshot mypost =
                             snaphot.data.docs[index] ?? '';
-                        bool isCompletariza = mypost['Ariza Durumu'];
+                        bool isCompletedAriza = mypost['Ariza Durumu'];
 
                         Future<void> _showChoiseDialog(BuildContext context) {
                           return showDialog(
@@ -125,8 +105,8 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                               });
                         }
 
-                        if (isCompletariza ) {
-                          return buidlpadding(mypost, size, _showChoiseDialog);
+                        if (isCompletedAriza) {
+                          return buildPadding(mypost, size, _showChoiseDialog);
                         }
                       });
             },
@@ -134,7 +114,7 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
         ));
   }
 
-  Padding buidlpadding(DocumentSnapshot<Object> mypost, Size size,
+  Padding buildPadding(DocumentSnapshot<Object> mypost, Size size,
       Future<void> _showChoiseDialog(BuildContext context)) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -160,7 +140,6 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                   DataColumn(
                     label: Text('Email'),
                   ),
-                  DataColumn(label: Text('Durum'))
                 ], rows: [
                   DataRow(cells: [
                     DataCell(Text(
@@ -182,26 +161,6 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     )),
-                    DataCell(
-                      PopupMenuButton(
-                        itemBuilder: (context) {
-                          return [
-                            PopupMenuItem<int>(
-                              value: 0,
-                              child: TextButton(
-                                  child: (Text("İşleme Al")), onPressed: () {}),
-                            ),
-                            PopupMenuItem<int>(
-                              value: 1,
-                              child: TextButton(
-                                child: (Text("Yapıldı")),
-                                onPressed: () => _showChoiseDialog(context),
-                              ),
-                            )
-                          ];
-                        },
-                      ),
-                    )
                   ])
                 ])
               ],
