@@ -22,7 +22,18 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
     int _currentIndex = 0;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF808080),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.black26,
+                  Colors.blueGrey,
+                ],
+              ),
+            ),
+          ),
           title: Text("Şehit Furkan Doğan Yurdu"),
           automaticallyImplyLeading: false,
           leading: new IconButton(
@@ -68,6 +79,7 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                   ? CircularProgressIndicator()
                   : ListView.builder(
                       itemCount: snaphot.data.docs.length,
+                      // ignore: missing_return
                       itemBuilder: (context, index) {
                         DocumentSnapshot mypost =
                             snaphot.data.docs[index] ?? '';
@@ -99,6 +111,18 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                                                 _statusServiceAriza
                                                     .removeStatus(mypost.id);
                                                 Navigator.pop(context);
+                                                Fluttertoast.showToast(
+                                                    msg: "Arıza Yapıldı",
+                                                    toastLength:
+                                                        Toast.LENGTH_SHORT,
+                                                    gravity:
+                                                        ToastGravity.BOTTOM,
+                                                    timeInSecForIosWeb: 5,
+                                                    backgroundColor:
+                                                        Colors.amber,
+                                                    textColor: Colors.white,
+                                                    fontSize: 15);
+                                                
                                               },
                                               child: Text(
                                                 "Evet",
@@ -125,7 +149,7 @@ class _ArizaTakipPageState extends State<ArizaTakipPage> {
                               });
                         }
 
-                        if (isCompletariza ) {
+                        if (isCompletariza) {
                           return buidlpadding(mypost, size, _showChoiseDialog);
                         }
                       });

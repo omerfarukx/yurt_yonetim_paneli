@@ -27,7 +27,18 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
     int _currentIndex = 0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF808080),
+       flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.black26,
+                  Colors.blueGrey,
+                ],
+              ),
+            ),
+          ),
         title: Text("Şehit Furkan Doğan Yurdu"),
         automaticallyImplyLeading: false,
         leading: new IconButton(
@@ -93,12 +104,18 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
               padding: EdgeInsets.only(left: size.width * 0.02),
               margin: EdgeInsets.only(left: size.width * 0.08, top: 25),
               decoration: BoxDecoration(
-                  color: Color(0xFFff0000
-                
-                  ),
-                  borderRadius: BorderRadius.circular(20)),
+                 color: Color.fromARGB(255, 47, 194, 62),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.50),
+                    blurRadius: 20,
+                    offset: Offset(0, 4),
+                  )
+                ]),
               width: size.width * 0.25,
-              height: size.height * 0.08,
+            height: size.height * 0.08,
               child:  TextButton(onPressed:() async{
 
                 print(nameController.text);
@@ -129,7 +146,7 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
               
                   child: Text(
                     "Yayınla",
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(fontSize: 24, color: Colors.black),
                   ),
                 ),
             ),

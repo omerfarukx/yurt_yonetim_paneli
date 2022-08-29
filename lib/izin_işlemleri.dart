@@ -24,7 +24,18 @@ class _IzinIslemleriPageState extends State<IzinIslemleriPage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF808080),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.black26,
+                  Colors.blueGrey,
+                ],
+              ),
+            ),
+          ),
           title: Text("Şehit Furkan Doğan Yurdu"),
           automaticallyImplyLeading: false,
           leading: new IconButton(

@@ -4,7 +4,6 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_6/ogrenci/ogrencidetay.dart';
 import 'package:flutter_application_6/status_servise.dart';
-import 'package:anim_search_bar/anim_search_bar.dart';
 import '../homepage.dart';
 
 class OgrenciListelemePage extends StatefulWidget {
@@ -22,7 +21,18 @@ class _OgrenciListelemePageState extends State<OgrenciListelemePage> {
     int _currentIndex = 0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF808080),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.black26,
+                  Colors.blueGrey,
+                ],
+              ),
+            ),
+          ),
         title: Text("Şehit Furkan Doğan Yurdu"),
         automaticallyImplyLeading: false,
         leading: new IconButton(

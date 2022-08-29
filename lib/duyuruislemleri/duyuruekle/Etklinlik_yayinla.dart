@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../homepage.dart';
@@ -46,7 +47,18 @@ class _EtknlikYayinlaPageState extends State<EtknlikYayinlaPage> {
     int _currentIndex = 0;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF808080),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.black26,
+                  Colors.blueGrey,
+                ],
+              ),
+            ),
+          ),
           title: Text("Şehit Furkan Doğan Yurdu"),
           automaticallyImplyLeading: false,
           leading: new IconButton(
@@ -134,11 +146,17 @@ class _EtknlikYayinlaPageState extends State<EtknlikYayinlaPage> {
               Container(
               padding: EdgeInsets.only(left: size.width * 0.02),
               margin: EdgeInsets.only(left: size.width * 0.08, top: 25),
-              decoration: BoxDecoration(
-                  color: Color(0xFFff0000
-                
-                  ),
-                  borderRadius: BorderRadius.circular(20)),
+               decoration: BoxDecoration(
+                 color: Color.fromARGB(255, 47, 194, 62),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.50),
+                    blurRadius: 20,
+                    offset: Offset(0, 4),
+                  )
+                ]),
               width: size.width * 0.25,
               height: size.height * 0.08,
               child:  TextButton(onPressed:() async{
@@ -158,12 +176,23 @@ class _EtknlikYayinlaPageState extends State<EtknlikYayinlaPage> {
                         '-' +
                         _dateTime.year.toString();
               await basvuruRef.doc(basvuruAdi.text).set({'Başvuru Adi' : '$Adi','Basvuru Icerik':'$Icerik','Tarih':'$tarih'});
+               Fluttertoast.showToast(msg: "Duyuru Gönderildi",
+             toastLength: Toast.LENGTH_SHORT,
+             gravity: ToastGravity.BOTTOM,
+             timeInSecForIosWeb: 5,
+             backgroundColor: Colors.amber,
+             textColor: Colors.white,
+             fontSize: 18);
+             Navigator.pushReplacement(
+              //Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EtknlikYayinlaPage()));
               },
               
               
                   child: Text(
                     "Yayınla",
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(fontSize: 24, color: Colors.black),
                   ),
                 ),
             ),

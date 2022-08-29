@@ -38,7 +38,18 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
     int _currentIndex = 0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF808080),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.black26,
+                  Colors.blueGrey,
+                ],
+              ),
+            ),
+          ),
         title: Text("Şehit Furkan Doğan Yurdu"),
         automaticallyImplyLeading: false,
         leading: new IconButton(
@@ -81,9 +92,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.isimValue1,
-                style: TextStyle(fontSize: 20),
+                widget.isimValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -94,9 +106,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.sehirValue1,
-                style: TextStyle(fontSize: 20),
+                widget.sehirValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -107,9 +120,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+             padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.EmailValue1,
-                style: TextStyle(fontSize: 20),
+                widget.EmailValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -120,9 +134,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.universiteValue1,
-                style: TextStyle(fontSize: 20),
+                widget.universiteValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -133,9 +148,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.BolumValue1,
-                style: TextStyle(fontSize: 20),
+                widget.BolumValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -146,9 +162,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.SinifValue1,
-                style: TextStyle(fontSize: 20),
+                widget.SinifValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -159,9 +176,10 @@ class _OgrenciDetayPageState extends State<OgrenciDetayPage> {
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
               height: size.height * 0.05,
               width: size.width * 0.6,
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                widget.odaValue1,
-                style: TextStyle(fontSize: 20),
+                widget.odaValue1,textAlign:TextAlign.center,
+                style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
