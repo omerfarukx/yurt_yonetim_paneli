@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_6/homepage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../duyurugiris.dart';
 
 class DuyuruEklePage extends StatefulWidget {
@@ -111,6 +112,18 @@ class _DuyuruEklePageState extends State<DuyuruEklePage> {
               };
               String metin=duyuruController.text;
               await duyuruRef.doc(nameController.text).set({'Metin' : '$metin'});
+              Fluttertoast.showToast(msg: "Duyuru Gönderildi",
+             toastLength: Toast.LENGTH_SHORT,
+             gravity: ToastGravity.BOTTOM,
+             timeInSecForIosWeb: 5,
+             backgroundColor: Colors.amber,
+             textColor: Colors.white,
+             fontSize: 15);
+             Navigator.pushReplacement(
+              //Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DuyuruEklePage()));
+              
               },
               
               

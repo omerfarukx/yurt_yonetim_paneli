@@ -22,8 +22,8 @@ class StatusServiceAriza{
     return ref;
   }
   Future<void> removeStatus(String docId) {
-    var ref = _firestore.collection("Ariza").doc(docId).delete();
-
+    var ref = _firestore.collection("Ariza").doc(docId).update({"Ariza Durumu":true});
+    
     return ref;
   }
 
@@ -53,6 +53,17 @@ class StatusServiceIzin{
 
   Stream<QuerySnapshot>getStatus(){
     var ref = _firestore.collection("AlinanBasvurular").snapshots();
+    return ref;
+  }
+}
+
+class StatusServiceUsers{
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+
+  Stream<QuerySnapshot>getStatus(){
+    var ref = _firestore.collection("users").snapshots();
     return ref;
   }
 }

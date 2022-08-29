@@ -48,6 +48,8 @@ dependencies:
   random_string: ^2.3.1
   firebase_storage: ^10.3.6
   image_picker_android: 0.8.4+13
+  dropdown_formfield: ^0.1.4
+  anim_search_bar: ^2.0.2
  
 
 dev_dependencies:
